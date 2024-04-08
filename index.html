@@ -6,12 +6,22 @@
     <style>
         .face {
             position: absolute;
-            width: 10vw; /* Adjusted to be responsive based on viewport width */
-            height: 10vw; /* Keep the aspect ratio square */
+            width: 15vw; /* Adjusted to be responsive based on viewport width */
+            height: 15vw; /* Keep the aspect ratio square */
             background-image: url('https://i.imgur.com/LMqx6mD.jpg');
             background-size: cover;
             max-width: 140px; /* Maximum size */
             max-height: 140px; /* Maximum size */
+        }
+        
+        /* Media query for screens smaller than 600px */
+        @media (max-width: 800px) {
+            .face {
+                width: 25vw; /* Larger size on mobile */
+                height: 25vw; /* Keep the aspect ratio square */
+                max-width: none; /* Remove max width */
+                max-height: none; /* Remove max height */
+            }
         }
     </style>
 </head>
