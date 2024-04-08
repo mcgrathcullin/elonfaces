@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bouncing Faces</title>
+    <style>
+.face {
+    position: absolute;
+    width: 10vw; /* Adjusted to be responsive based on viewport width */
+    height: 10vw; /* Keep the aspect ratio square */
+    background-image: url('https://i.imgur.com/LMqx6mD.jpg');
+    background-size: cover;
+    max-width: 60px; /* Maximum size */
+    max-height: 60px; /* Maximum size */
+}
+
+    </style>
+</head>
+<body>
+    <div id="container" style="position: relative; width: 100vw; height: 100vh;"></div>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('container');
+    const numFaces = 20; // Number of faces to bounce around
+
+    for (let i = 0; i < numFaces; i++) {
+        const face = document.createElement('div');
+        face.classList.add('face');
+        container.appendChild(face);
+        animateFace(face);
+    }
+});
+
+function animateFace(face) {
+    let x = 0, y = 0;
+    let dx = (Math.random() + 0.5) * 2;
+    let dy = (Math.random() + 0.5) * 2;
+
+    function move() {
+        const rect = container.getBoundingClientRect();
+        const faceRect = face.getBoundingClientRect();
+
+        if (x + dx > rect.width - faceRect.width || x + dx < 0) dx = -dx;
+        if (y + dy > rect.height - faceRect.height || y + dy < 0) dy = -dy;
+
+        x += dx;
+        y += dy;
+        face.style.left = x + 'px';
+        face.style.top = y + 'px';
+
+        requestAnimationFrame(move);
+    }
+
+    move();
+}
+    </script>
+</body>
+</html>
